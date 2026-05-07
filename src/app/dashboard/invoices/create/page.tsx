@@ -174,6 +174,27 @@ export default function CreateInvoicePage() {
         payload
       );
 
+      const invoice = response.data.data;
+
+const invoiceLink =
+  `${window.location.origin}/invoice/${invoice.publicId}`;
+
+const message = `
+Invoice Ready
+
+Invoice No: ${invoice.invoiceNo}
+
+View Invoice:
+${invoiceLink}
+`;
+
+window.open(
+  `https://wa.me/91${customerWhatsappNo}?text=${encodeURIComponent(message)}`,
+  "_blank"
+);
+
+alert("Invoice created successfully");
+
       alert(response.data.message);
 
       // =========================================
@@ -201,7 +222,7 @@ export default function CreateInvoicePage() {
 
       alert(
         error?.response?.data?.message ||
-          "Failed to create invoice"
+          "Failed to create bill"
       );
 
     } finally {
@@ -210,15 +231,15 @@ export default function CreateInvoicePage() {
   };
 
   return (
-    <div className="space-y-6 pb-20">
+    <div className="space-y-6 pb-10">
 
       {/* ========================================= */}
       {/* PAGE TITLE */}
       {/* ========================================= */}
 
       <div>
-        <h1 className="text-3xl font-bold">
-          Create Invoice
+        <h1 className="text-xl font-bold">
+          Create Bill
         </h1>
       </div>
 
@@ -227,18 +248,18 @@ export default function CreateInvoicePage() {
       {/* ========================================= */}
 
       <Card>
-        <CardHeader>
+        {/* <CardHeader>
           <CardTitle>
             Customer Information
           </CardTitle>
-        </CardHeader>
+        </CardHeader> */}
 
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <div>
-            <label className="text-sm font-medium">
+            {/* <label className="text-sm font-medium">
               Customer Name
-            </label>
+            </label> */}
 
             <Input
               placeholder="Enter customer name"
@@ -250,9 +271,9 @@ export default function CreateInvoicePage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium">
+            {/* <label className="text-sm font-medium">
               WhatsApp Number
-            </label>
+            </label> */}
 
             <Input
               placeholder="Enter whatsapp number"
@@ -272,11 +293,11 @@ export default function CreateInvoicePage() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>
-            Invoice Items
+            Bill Items
           </CardTitle>
 
           <Button onClick={addRow}>
-            Add Row
+            Add Item
           </Button>
         </CardHeader>
 
@@ -428,7 +449,7 @@ export default function CreateInvoicePage() {
       <Card>
         <CardHeader>
           <CardTitle>
-            Invoice Summary
+            Bill Summary
           </CardTitle>
         </CardHeader>
 
