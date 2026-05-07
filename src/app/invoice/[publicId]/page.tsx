@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,7 +14,6 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-
 type InvoiceItem = {
   id: string;
 
@@ -25,7 +23,6 @@ type InvoiceItem = {
   unitPrice: number;
   totalPrice: number;
 };
-
 
 type Invoice = {
   id: string;
@@ -82,9 +79,13 @@ export default function PublicInvoicePage() {
         setInvoice(response.data.data);
 
       } catch (error) {
+
         console.log(error);
+
       } finally {
+
         setLoading(false);
+
       }
     };
 
@@ -113,91 +114,97 @@ export default function PublicInvoicePage() {
   if (!invoice) {
     return (
       <div className="min-h-screen flex items-center justify-center text-xl font-semibold text-red-500">
-        Invoice Not Found
+        Bill Not Found
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen bg-gray-100 py-10 px-4 print:bg-white print:p-0">
 
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-md mx-auto space-y-6 print:max-w-[80mm]">
 
         {/* ========================================= */}
         {/* ACTIONS */}
         {/* ========================================= */}
 
-        <div className="flex justify-end">
-          <Button
-            onClick={() => window.print()}
-          >
-            Print Invoice
+        <div className="flex justify-end print:hidden">
+
+          <Button onClick={() => window.print()}>
+            Print Bill
           </Button>
+
         </div>
 
         {/* ========================================= */}
-        {/* INVOICE */}
+        {/* BILL */}
         {/* ========================================= */}
 
-        <Card className="shadow-lg">
+        <Card className="shadow-xl border rounded-2xl print:shadow-none print:rounded-none">
 
-          <CardHeader className="border-b">
+          <CardHeader className="border-b pb-4 text-center">
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* ========================================= */}
+            {/* COMPANY */}
+            {/* ========================================= */}
+
+            <div>
+
+              <CardTitle className="text-2xl font-extrabold tracking-wide">
+                {invoice.company.name}
+              </CardTitle>
+
+              <p className="text-gray-500 mt-1 text-xs uppercase tracking-wider">
+                Invoice Bill
+              </p>
+
+            </div>
+
+            {/* ========================================= */}
+            {/* INVOICE DETAILS */}
+            {/* ========================================= */}
+
+            <div className="text-sm text-gray-600 mt-4 space-y-1">
+
+              <div className="font-bold text-black">
+                {invoice.invoiceNo}
+              </div>
 
               <div>
-                <CardTitle className="text-3xl font-bold">
-                  {invoice.company.name}
-                </CardTitle>
 
-                <p className="text-gray-500 mt-1">
-                  Invoice Billing
-                </p>
+                {new Date(
+                  invoice.createdAt
+                ).toLocaleString("en-IN", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                  hour12: true,
+                })}
+
               </div>
 
-              <div className="text-left md:text-right space-y-1">
-                <div className="text-lg font-semibold">
-                  {invoice.invoiceNo}
-                </div>
-
-                <div className="text-sm text-gray-500">
-                  {new Date(
-                    invoice.createdAt
-                  ).toLocaleString()}
-                </div>
-              </div>
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-8 pt-6">
+          <CardContent className="space-y-6 pt-5 text-sm">
 
             {/* ========================================= */}
             {/* CUSTOMER */}
             {/* ========================================= */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1 border-b pb-4">
+
+              <div className="font-semibold text-base">
+                Customer
+              </div>
 
               <div>
-                <h2 className="text-lg font-semibold mb-2">
-                  Customer Information
-                </h2>
-
-                <div className="space-y-1 text-gray-700">
-                  <p>
-                    <span className="font-medium">
-                      Name:
-                    </span>{" "}
-                    {invoice.customer.name}
-                  </p>
-
-                  <p>
-                    <span className="font-medium">
-                      WhatsApp:
-                    </span>{" "}
-                    {invoice.customer.whatsappNo}
-                  </p>
-                </div>
+                {invoice.customer.name}
               </div>
+
+              <div className="text-gray-500">
+                {invoice.customer.whatsappNo}
+              </div>
+
             </div>
 
             {/* ========================================= */}
@@ -205,40 +212,37 @@ export default function PublicInvoicePage() {
             {/* ========================================= */}
 
             <div>
-              <h2 className="text-lg font-semibold mb-4">
-                Invoice Items
-              </h2>
 
-              <div className="space-y-4">
+              <div className="font-semibold text-base mb-3">
+                Items
+              </div>
+
+              <div className="space-y-3">
 
                 {invoice.items.map((item) => (
 
                   <div
                     key={item.id}
-                    className="border rounded-xl p-4 bg-white"
+                    className="border-b py-3"
                   >
 
-                    <div className="flex items-center justify-between">
+                    {/* PRODUCT */}
+                    <div className="font-semibold">
+                      {item.productName}
+                    </div>
+
+                    {/* DETAILS */}
+                    <div className="flex items-center justify-between mt-1 text-gray-600 text-xs">
 
                       <div>
-                        <div className="text-lg font-semibold">
-                          {item.productName}
-                        </div>
-
-                        <div className="text-sm text-gray-500 mt-1">
-                          Qty: {item.quantity} {item.unit}
-                        </div>
+                        {item.quantity} {item.unit}
+                        × ₹{item.unitPrice}
                       </div>
 
-                      <div className="text-right">
-                        <div>
-                          ₹ {item.unitPrice}
-                        </div>
-
-                        <div className="font-bold text-lg mt-1">
-                          ₹ {item.totalPrice}
-                        </div>
+                      <div className="font-bold text-black text-sm">
+                        ₹ {item.totalPrice}
                       </div>
+
                     </div>
                   </div>
                 ))}
@@ -249,7 +253,7 @@ export default function PublicInvoicePage() {
             {/* SUMMARY */}
             {/* ========================================= */}
 
-            <div className="max-w-sm ml-auto border rounded-xl p-4 space-y-3 bg-gray-50">
+            <div className="pt-4 border-t border-dashed space-y-2 text-sm">
 
               <div className="flex items-center justify-between">
                 <span>Subtotal</span>
@@ -266,20 +270,58 @@ export default function PublicInvoicePage() {
                 <span>₹ {invoice.paidAmount}</span>
               </div>
 
-              <div className="flex items-center justify-between font-bold text-lg border-t pt-3">
+              <div className="flex items-center justify-between font-bold text-base border-t pt-3 mt-3">
                 <span>Total</span>
                 <span>₹ {invoice.total}</span>
               </div>
 
-              <div className="flex items-center justify-between text-red-500 font-semibold">
+              <div className="flex items-center justify-between text-red-500 font-bold">
                 <span>Due</span>
                 <span>₹ {invoice.dueAmount}</span>
               </div>
+
             </div>
+
+            {/* ========================================= */}
+            {/* FOOTER */}
+            {/* ========================================= */}
+
+            <div className="text-center text-xs text-gray-500 pt-6 border-t border-dashed">
+
+              <div>
+                Thank You For Your Purchase
+              </div>
+
+              <div className="mt-1">
+                Visit Again
+              </div>
+
+            </div>
+
           </CardContent>
         </Card>
       </div>
+
+      <style jsx global>{`
+        @media print {
+
+          body {
+            background: white !important;
+          }
+
+          @page {
+            size: 80mm auto;
+            margin: 0;
+          }
+
+          html,
+          body {
+            width: 80mm;
+          }
+
+        }
+      `}</style>
+
     </div>
   );
 }
-
