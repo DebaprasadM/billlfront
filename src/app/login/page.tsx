@@ -59,7 +59,7 @@ export default function LoginPage() {
       setToken(token);
 
       // ✅ redirect dashboard
-      router.push("/dashboard");
+      router.push("/dashboard/invoices");
     } catch (error: any) {
       alert(
         error?.response?.data?.message ||
