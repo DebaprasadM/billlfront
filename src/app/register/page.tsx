@@ -72,7 +72,7 @@ export default function RegisterPage() {
           >
             <div>
               <label className="text-sm font-medium">
-                Company Name
+                Shop Name/দোকানের নাম
               </label>
 
               <Input
@@ -86,7 +86,7 @@ export default function RegisterPage() {
 
             <div>
               <label className="text-sm font-medium">
-                Email
+                Email/ইমেল
               </label>
 
               <Input
@@ -101,7 +101,7 @@ export default function RegisterPage() {
 
             <div>
               <label className="text-sm font-medium">
-                Password
+                Password/পাসওয়ার্ড
               </label>
 
               <Input
@@ -119,7 +119,7 @@ export default function RegisterPage() {
               className="w-full"
               disabled={loading}
             >
-              {loading ? "Creating..." : "Register"}
+              {loading ? "Creating.../রেজিষ্টারহচ্ছে..." : "Register/রেজিষ্টার"}
             </Button>
           </form>
         </CardContent>

@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import axiosInstance from "@/lib/axios";
@@ -86,7 +87,7 @@ export default function LoginPage() {
           >
             <div>
               <label className="text-sm font-medium">
-                Email
+                Email/ইমেল
               </label>
 
               <Input
@@ -101,7 +102,7 @@ export default function LoginPage() {
 
             <div>
               <label className="text-sm font-medium">
-                Password
+                Password/পাসওয়ার্ড
               </label>
 
               <Input
@@ -122,6 +123,26 @@ export default function LoginPage() {
               {loading ? "Logging in..." : "Login"}
             </Button>
           </form>
+            {/* REGISTER LINK */}
+
+  <div className="mt-6 text-center text-sm text-gray-600">
+
+    Don&apos;t have an account? অ্যাকাউন্ট নেই?{" "}
+
+    <Link
+      href="/register"
+      className="
+        text-red-500
+        hover:text-red-600
+        font-semibold
+        hover:underline
+        transition-all
+      "
+    >
+      Register Here/রেজিস্টার করুন
+    </Link>
+
+  </div>
         </CardContent>
       </Card>
     </div>

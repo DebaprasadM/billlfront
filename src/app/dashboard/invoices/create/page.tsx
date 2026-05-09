@@ -239,7 +239,7 @@ alert("Invoice created successfully");
 
       <div>
         <h1 className="text-xl font-bold">
-          Create Bill
+          Create Bill/বিল তৈরী করুন 
         </h1>
       </div>
 
@@ -262,7 +262,7 @@ alert("Invoice created successfully");
             </label> */}
 
             <Input
-              placeholder="Enter customer name"
+              placeholder="customer name/ক্রেতার নাম "
               value={customerName}
               onChange={(e) =>
                 setCustomerName(e.target.value)
@@ -276,7 +276,7 @@ alert("Invoice created successfully");
             </label> */}
 
             <Input
-              placeholder="Enter whatsapp number"
+              placeholder="whatsapp number/হোয়াটস্যাপ নম্বর"
               value={customerWhatsappNo}
               onChange={(e) =>
                 setCustomerWhatsappNo(e.target.value)
@@ -293,11 +293,11 @@ alert("Invoice created successfully");
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>
-            Bill Items
+            Bill Items/বিল বিবরণ
           </CardTitle>
 
           <Button onClick={addRow}>
-            Add Item
+            Add Item/পণ্য যোগ করুন
           </Button>
         </CardHeader>
 
@@ -349,7 +349,7 @@ alert("Invoice created successfully");
 
                     <div>
                       <label className="text-sm font-medium">
-                        Product Name
+                        Product Name/পণ্য
                       </label>
 
                       <Input
@@ -369,7 +369,7 @@ alert("Invoice created successfully");
 
                       <div>
                         <label className="text-sm font-medium">
-                          Quantity
+                          Quantity/পরিমাণ
                         </label>
 
                         <Input
@@ -387,11 +387,11 @@ alert("Invoice created successfully");
 
                       <div>
                         <label className="text-sm font-medium">
-                          Unit
+                          Unit/একক
                         </label>
 
                         <Input
-                          placeholder="kg"
+                          placeholder="kg/gm/litre/"
                           value={item.unit}
                           onChange={(e) =>
                             updateItem(
@@ -406,7 +406,7 @@ alert("Invoice created successfully");
 
                     <div>
                       <label className="text-sm font-medium">
-                        Unit Price
+                        Unit Price/একক মূল্য
                       </label>
 
                       <Input
@@ -431,7 +431,7 @@ alert("Invoice created successfully");
                         variant="destructive"
                         onClick={() => removeRow(index)}
                       >
-                        Remove
+                        Remove/সরান
                       </Button>
                     </div>
                   </div>
@@ -449,7 +449,7 @@ alert("Invoice created successfully");
       <Card>
         <CardHeader>
           <CardTitle>
-            Bill Summary
+            Bill Summary/বিল সারাংশ
           </CardTitle>
         </CardHeader>
 
@@ -457,7 +457,7 @@ alert("Invoice created successfully");
 
           <div>
             <label className="text-sm font-medium">
-              Discount
+              Discount/ছাড়
             </label>
 
             <Input
@@ -471,7 +471,7 @@ alert("Invoice created successfully");
 
           <div>
             <label className="text-sm font-medium">
-              Paid Amount
+              Paid Amount/গৃহীত মূল্য
             </label>
 
             <Input
@@ -493,7 +493,7 @@ alert("Invoice created successfully");
             </div>
 
             <div>
-              Due: {dueAmount}
+              Due/বাকি: {dueAmount}
             </div>
           </div>
 
@@ -503,8 +503,8 @@ alert("Invoice created successfully");
             disabled={loading}
           >
             {loading
-              ? "Creating Invoice..."
-              : "Create Invoice"}
+              ? "Creating Invoice../রশিদ তৈরি হচ্ছে.."
+              : "Create Invoice/রশিদ তৈরি করুন"}
           </Button>
         </CardContent>
       </Card>

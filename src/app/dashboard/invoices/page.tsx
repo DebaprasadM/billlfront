@@ -137,12 +137,12 @@ export default function InvoiceListPage() {
       <div>
 
         <h1 className="text-3xl font-bold">
-          Bills
+          Bills/বিল
         </h1>
 
-        <p className="text-gray-500 mt-1">
+        {/* <p className="text-gray-500 mt-1">
           Date wise bill list
-        </p>
+        </p> */}
 
       </div>
 
@@ -167,7 +167,7 @@ export default function InvoiceListPage() {
           <div>
 
             <label className="text-sm font-medium">
-              Start Date
+              Start Date/শুরুর তারিখ
             </label>
 
             <Input
@@ -185,7 +185,7 @@ export default function InvoiceListPage() {
           <div>
 
             <label className="text-sm font-medium">
-              End Date
+              End Date/শেষের তারিখ
             </label>
 
             <Input
@@ -206,7 +206,7 @@ export default function InvoiceListPage() {
               className="w-full"
               onClick={fetchInvoices}
             >
-              Refresh
+              Refresh/পুনরায় বসান
             </Button>
 
           </div>
@@ -226,7 +226,7 @@ export default function InvoiceListPage() {
             <div>
 
               <div className="text-sm text-gray-500">
-                Total Bills
+                Total Bills/মোট বিল
               </div>
 
               <div className="text-2xl font-bold mt-1">
@@ -238,7 +238,7 @@ export default function InvoiceListPage() {
             <div className="text-right">
 
               <div className="text-sm text-gray-500">
-                Total Sales
+                Total Sales/মোট বিক্রয়
               </div>
 
               <div className="text-2xl font-bold mt-1">
@@ -259,7 +259,7 @@ export default function InvoiceListPage() {
         <CardHeader>
 
           <CardTitle>
-            Invoice List
+            Invoice List/রশিদ তালিকা
           </CardTitle>
 
         </CardHeader>
@@ -269,13 +269,13 @@ export default function InvoiceListPage() {
           {loading ? (
 
             <div className="text-center py-10 font-semibold">
-              Loading Bills...
+              Loading Bills.../বিল লোড হচ্ছে...
             </div>
 
           ) : invoices.length === 0 ? (
 
             <div className="text-center py-10 text-gray-500">
-              No bills found
+              No bills found/কোনো বিল পাওয়া যায়নি
             </div>
 
           ) : (
