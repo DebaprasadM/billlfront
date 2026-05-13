@@ -65,28 +65,19 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-200">
       {/* ========================================= */}
       {/* HEADER */}
       {/* ========================================= */}
 
       <header className="bg-white border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          {/* ========================================= */}
-          {/* LEFT */}
-          {/* ========================================= */}
+        <div className="w-full px-4 py-2 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* TOGGLE SIDEBAR */}
 
-         <div className="flex items-center gap-4">
-
-  {/* TOGGLE SIDEBAR */}
-
-  <button
-    onClick={() =>
-      setSidebarOpen(
-        !sidebarOpen
-      )
-    }
-    className="
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="
       bg-gray-100
       hover:bg-gray-200
       px-4
@@ -96,9 +87,9 @@ export default function DashboardLayout({
       transition-all
       shadow-sm
     "
-  >
-    ☰
-  </button>
+            >
+              ☰
+            </button>
             {/* ========================================= */}
             {/* LOGO */}
             {/* ========================================= */}
@@ -196,27 +187,7 @@ export default function DashboardLayout({
         </div>
       </header>
 
-      {/* ========================================= */}
-      {/* PAGE CONTENT */}
-      {/* ========================================= */}
-
-      {/* <main className="p-6">
-        {children}
-      </main> */}
-
-      {/* ========================================= */}
-      {/* BODY */}
-      {/* ========================================= */}
-
-      {/* ========================================= */}
-      {/* BODY */}
-      {/* ========================================= */}
-
       <div className="flex">
-        {/* ========================================= */}
-        {/* SIDEBAR */}
-        {/* ========================================= */}
-
         {sidebarOpen && (
           <aside
             className="
@@ -235,7 +206,7 @@ export default function DashboardLayout({
                   style={{
                     background: isActive("/dashboard/products")
                       ? "#ff3b57"
-                      : "transparent",
+                      : "#f8f6f6",
 
                     color: isActive("/dashboard/products")
                       ? "white"
@@ -256,10 +227,6 @@ export default function DashboardLayout({
             </div>
           </aside>
         )}
-
-        {/* ========================================= */}
-        {/* PAGE CONTENT */}
-        {/* ========================================= */}
 
         <main className="flex-1 p-2">{children}</main>
       </div>
