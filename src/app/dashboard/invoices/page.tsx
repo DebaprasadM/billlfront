@@ -4,30 +4,22 @@ import { useEffect, useMemo, useState } from "react";
 
 import axiosInstance from "@/lib/axios";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
 
 import {
-
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-
 } from "@/components/ui/table";
 
 type Invoice = {
-
   id: string;
 
   publicId: string;
@@ -49,58 +41,43 @@ type Invoice = {
 };
 
 export default function InvoiceListPage() {
-
   // =========================================
   // TODAY DEFAULT DATE
   // =========================================
 
-  const today =
-    new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split("T")[0];
 
   // =========================================
   // STATES
   // =========================================
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [invoices, setInvoices] =
-    useState<Invoice[]>([]);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
 
-  const [expandedId, setExpandedId] =
-    useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const [startDate, setStartDate] =
-    useState(today);
+  const [startDate, setStartDate] = useState(today);
 
-  const [endDate, setEndDate] =
-    useState(today);
+  const [endDate, setEndDate] = useState(today);
 
   // =========================================
   // FETCH INVOICES
   // =========================================
 
   const fetchInvoices = async () => {
-
     try {
-
       setLoading(true);
 
-      const response =
-        await axiosInstance.get(
-          `/invoices?startDate=${startDate}&endDate=${endDate}`
-        );
+      const response = await axiosInstance.get(
+        `/invoices?startDate=${startDate}&endDate=${endDate}`,
+      );
 
       setInvoices(response.data.data);
-
     } catch (error) {
-
       console.log(error);
-
     } finally {
-
       setLoading(false);
-
     }
   };
 
@@ -109,9 +86,7 @@ export default function InvoiceListPage() {
   // =========================================
 
   useEffect(() => {
-
     fetchInvoices();
-
   }, [startDate, endDate]);
 
   // =========================================
@@ -119,53 +94,28 @@ export default function InvoiceListPage() {
   // =========================================
 
   const totalSales = useMemo(() => {
-
-    return invoices.reduce(
-      (sum, invoice) => sum + invoice.total,
-      0
-    );
-
+    return invoices.reduce((sum, invoice) => sum + invoice.total, 0);
   }, [invoices]);
 
   return (
-    <div className="space-y-6 pb-20">
-
-      {/* ========================================= */}
-      {/* HEADER */}
-      {/* ========================================= */}
-
-      <div>
-
-        <h1 className="text-3xl font-bold">
-          Bills/বিল
-        </h1>
-
-        {/* <p className="text-gray-500 mt-1">
-          Date wise bill list
-        </p> */}
-
-      </div>
-
+    <div className="space-y-2 pb-10">
       {/* ========================================= */}
       {/* FILTER */}
       {/* ========================================= */}
 
       <Card>
-
-        <CardHeader>
+        {/* <CardHeader>
 
           <CardTitle>
             Filter By Date
           </CardTitle>
 
-        </CardHeader>
+        </CardHeader> */}
 
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
           {/* START */}
 
           <div>
-
             <label className="text-sm font-medium">
               Start Date/শুরুর তারিখ
             </label>
@@ -173,42 +123,28 @@ export default function InvoiceListPage() {
             <Input
               type="date"
               value={startDate}
-              onChange={(e) =>
-                setStartDate(e.target.value)
-              }
+              onChange={(e) => setStartDate(e.target.value)}
             />
-
           </div>
 
           {/* END */}
 
           <div>
-
-            <label className="text-sm font-medium">
-              End Date/শেষের তারিখ
-            </label>
+            <label className="text-sm font-medium">End Date/শেষের তারিখ</label>
 
             <Input
               type="date"
               value={endDate}
-              onChange={(e) =>
-                setEndDate(e.target.value)
-              }
+              onChange={(e) => setEndDate(e.target.value)}
             />
-
           </div>
 
           {/* BUTTON */}
 
           <div className="flex items-end">
-
-            <Button
-              className="w-full"
-              onClick={fetchInvoices}
-            >
+            <Button className="w-full" onClick={fetchInvoices}>
               Refresh/পুনরায় বসান
             </Button>
-
           </div>
         </CardContent>
       </Card>
@@ -218,33 +154,20 @@ export default function InvoiceListPage() {
       {/* ========================================= */}
 
       <Card>
-
-        <CardContent className="pt-6">
-
+        <CardContent className="pt-2">
           <div className="flex items-center justify-between">
-
             <div>
+              <div className="text-sm text-gray-500">Total Bills/মোট বিল</div>
 
-              <div className="text-sm text-gray-500">
-                Total Bills/মোট বিল
-              </div>
-
-              <div className="text-2xl font-bold mt-1">
-                {invoices.length}
-              </div>
-
+              <div className="text-2xl font-bold mt-1">{invoices.length}</div>
             </div>
 
             <div className="text-right">
-
               <div className="text-sm text-gray-500">
                 Total Sales/মোট বিক্রয়
               </div>
 
-              <div className="text-2xl font-bold mt-1">
-                ₹ {totalSales}
-              </div>
-
+              <div className="text-2xl font-bold mt-1">₹ {totalSales}</div>
             </div>
           </div>
         </CardContent>
@@ -255,61 +178,35 @@ export default function InvoiceListPage() {
       {/* ========================================= */}
 
       <Card>
-
         <CardHeader>
-
-          <CardTitle>
-            Invoice List/রশিদ তালিকা
-          </CardTitle>
-
+          <CardTitle>Invoice List/রশিদ তালিকা</CardTitle>
         </CardHeader>
 
         <CardContent>
-
           {loading ? (
-
             <div className="text-center py-10 font-semibold">
               Loading Bills.../বিল লোড হচ্ছে...
             </div>
-
           ) : invoices.length === 0 ? (
-
             <div className="text-center py-10 text-gray-500">
               No bills found/কোনো বিল পাওয়া যায়নি
             </div>
-
           ) : (
-
             <div className="overflow-x-auto">
-
               <Table>
-
                 <TableHeader>
-
                   <TableRow>
+                    <TableHead>Bill No</TableHead>
 
-                    <TableHead>
-                      Bill No
-                    </TableHead>
+                    <TableHead>Customer</TableHead>
 
-                    <TableHead>
-                      Customer
-                    </TableHead>
-
-                    <TableHead>
-                      Total
-                    </TableHead>
-
+                    <TableHead>Total</TableHead>
                   </TableRow>
-
                 </TableHeader>
 
                 <TableBody>
-
                   {invoices.map((invoice) => {
-
-                    const isOpen =
-                      expandedId === invoice.id;
+                    const isOpen = expandedId === invoice.id;
 
                     return (
                       <>
@@ -321,26 +218,18 @@ export default function InvoiceListPage() {
                           key={invoice.id}
                           className="cursor-pointer"
                           onClick={() =>
-                            setExpandedId(
-                              isOpen
-                                ? null
-                                : invoice.id
-                            )
+                            setExpandedId(isOpen ? null : invoice.id)
                           }
                         >
-
                           <TableCell className="font-semibold">
                             {invoice.invoiceNo}
                           </TableCell>
 
-                          <TableCell>
-                            {invoice.customer.name}
-                          </TableCell>
+                          <TableCell>{invoice.customer.name}</TableCell>
 
                           <TableCell className="font-bold">
                             ₹ {invoice.total}
                           </TableCell>
-
                         </TableRow>
 
                         {/* ========================================= */}
@@ -348,91 +237,52 @@ export default function InvoiceListPage() {
                         {/* ========================================= */}
 
                         {isOpen && (
-
                           <TableRow>
-
-                            <TableCell
-                              colSpan={3}
-                              className="bg-gray-50"
-                            >
-
+                            <TableCell colSpan={3} className="bg-gray-50">
                               <div className="space-y-3 p-3">
-
                                 <div>
-
                                   <span className="font-semibold">
                                     WhatsApp:
                                   </span>{" "}
-
-                                  {
-                                    invoice.customer
-                                      .whatsappNo
-                                  }
-
+                                  {invoice.customer.whatsappNo}
                                 </div>
 
                                 <div>
-
-                                  <span className="font-semibold">
-                                    Due:
-                                  </span>{" "}
-
-                                  ₹ {invoice.dueAmount}
-
+                                  <span className="font-semibold">Due:</span> ₹{" "}
+                                  {invoice.dueAmount}
                                 </div>
 
                                 <div>
-
-                                  <span className="font-semibold">
-                                    Status:
-                                  </span>{" "}
-
+                                  <span className="font-semibold">Status:</span>{" "}
                                   {invoice.paymentStatus}
-
                                 </div>
 
                                 <div>
-
                                   <span className="font-semibold">
                                     Created:
                                   </span>{" "}
-
-                                  {new Date(
-                                    invoice.createdAt
-                                  ).toLocaleString(
+                                  {new Date(invoice.createdAt).toLocaleString(
                                     "en-IN",
                                     {
-                                      dateStyle:
-                                        "medium",
+                                      dateStyle: "medium",
 
-                                      timeStyle:
-                                        "short",
+                                      timeStyle: "short",
 
                                       hour12: true,
-                                    }
+                                    },
                                   )}
-
                                 </div>
 
                                 <div className="pt-2">
-
                                   <a
                                     href={`/invoice/${invoice.publicId}`}
                                     target="_blank"
                                   >
-
-                                    <Button>
-                                      Open Bill
-                                    </Button>
-
+                                    <Button>Open Bill</Button>
                                   </a>
-
                                 </div>
-
                               </div>
-
                             </TableCell>
-
                           </TableRow>
                         )}
                       </>

@@ -785,7 +785,7 @@ ${invoiceLink}
   };
 
   return (
-    <div className="space-y-6 pb-10">
+    <div className="space-y-2 pb-10">
       {/* ========================================= */}
       {/* TITLE */}
       {/* ========================================= */}
@@ -798,8 +798,17 @@ ${invoiceLink}
       {/* CUSTOMER */}
       {/* ========================================= */}
 
-      <Card>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <Card
+        className="
+    p-1
+    border-0
+    shadow-sm
+    bg-linear-to-r
+    from-pink-50
+    to-orange-50
+  "
+      >
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-1">
           <Input
             placeholder="customer name/ক্রেতার নাম"
             value={customerName}
@@ -818,7 +827,16 @@ ${invoiceLink}
       {/* INVENTORY SEARCH */}
       {/* ========================================= */}
 
-      <Card>
+      <Card
+        className="
+    p-1
+    border-0
+    shadow-sm
+    bg-linear-to-r
+    from-pink-50
+    to-orange-50
+  "
+      >
         <CardContent className="space-y-4">
           <Input
             placeholder="Search inventory..."
