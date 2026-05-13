@@ -489,9 +489,9 @@ export default function ProductsPage() {
                       Stock
                     </th>
 
-                    <th className="text-left p-3">
+                    {/* <th className="text-left p-3">
                       Unit
-                    </th>
+                    </th> */}
 
                     <th className="text-left p-3">
                       Price
@@ -528,18 +528,19 @@ export default function ProductsPage() {
                         <td className="p-3">
 
                           {product.stockQty ??
+                            "-"}{product.defaultUnit ??
                             "-"}
 
                         </td>
 
                         {/* UNIT */}
 
-                        <td className="p-3">
+                        {/* <td className="p-3">
 
                           {product.defaultUnit ??
                             "-"}
 
-                        </td>
+                        </td> */}
 
                         {/* PRICE */}
 
@@ -586,7 +587,7 @@ export default function ProductsPage() {
                                 });
                               }}
                             >
-                              Edit
+                              ✏️
                             </Button>
 
                             {/* DELETE */}
@@ -600,7 +601,7 @@ export default function ProductsPage() {
                                 )
                               }
                             >
-                              Delete
+                              🗑️
                             </Button>
 
                           </div>

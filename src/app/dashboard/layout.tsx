@@ -96,7 +96,6 @@ export default function DashboardLayout({
 
             <div>
               <h1 className="text-2xl font-black tracking-tight">DebBill</h1>
-
             </div>
 
             {/* ========================================= */}
@@ -182,6 +181,7 @@ export default function DashboardLayout({
 
               <Link href="/dashboard/products">
                 <div
+                  onClick={() => setSidebarOpen(false)}
                   style={{
                     background: isActive("/dashboard/products")
                       ? "#ff3b57"
