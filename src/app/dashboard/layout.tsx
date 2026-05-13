@@ -71,8 +71,8 @@ export default function DashboardLayout({
       {/* ========================================= */}
 
       <header className="bg-white border-b sticky top-0 z-50">
-        <div className="w-full px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="w-full px-2 py-2 flex items-center">
+          <div className="flex items-center gap-2">
             {/* TOGGLE SIDEBAR */}
 
             <button
@@ -80,7 +80,7 @@ export default function DashboardLayout({
               className="
       bg-gray-100
       hover:bg-gray-200
-      px-4
+      px-2
       py-2
       rounded-xl
       font-semibold
@@ -97,7 +97,6 @@ export default function DashboardLayout({
             <div>
               <h1 className="text-2xl font-black tracking-tight">DebBill</h1>
 
-              {/* <p className="text-xs text-gray-500 -mt-1">Billing System</p> */}
             </div>
 
             {/* ========================================= */}
@@ -121,8 +120,8 @@ export default function DashboardLayout({
                       : "#6b7280",
                   }}
                   className="
-                    px-10
-                    py-3
+                    px-2
+                    py-2
                     rounded-xl
                     font-semibold
                     cursor-pointer
@@ -150,8 +149,8 @@ export default function DashboardLayout({
                       : "#6b7280",
                   }}
                   className="
-                    px-10
-                    py-3
+                    px-2
+                    py-2
                     rounded-xl
                     font-semibold
                     cursor-pointer
@@ -164,26 +163,6 @@ export default function DashboardLayout({
               </Link>
             </div>
           </div>
-
-          {/* ========================================= */}
-          {/* LOGOUT */}
-          {/* ========================================= */}
-
-          {/* <button
-            onClick={handleLogout}
-            className="
-              bg-red-500
-              hover:bg-red-600
-              text-white
-              px-6
-              py-3
-              rounded-xl
-              font-semibold
-              transition-all
-            "
-          >
-            Logout
-          </button> */}
         </div>
       </header>
 
